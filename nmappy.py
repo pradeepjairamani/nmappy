@@ -1,6 +1,12 @@
-# nmappy
-Automating and Enhancing Nmap using Python
+import sys
+from Modules import nse
+from Modules import sploit
+from Modules import zenmap
+from Modules import direct
+from Modules import interactive
+from Modules import ndf
 
+HELP='''
      .-') _ _   .-')      ('-.      _ (`-.    _ (`-.             
     ( OO ) | '.( OO )_   ( OO ).-. ( (OO  )  ( (OO  )            
 ,--./ ,--,' ,--.   ,--.) / . --. /_.`     \ _.`     \ ,--.   ,--.
@@ -13,7 +19,7 @@ Automating and Enhancing Nmap using Python
 
                                             By Pradeep Jairamani
 
-Nmappy performs following Operations:
+This script performs following functions:
 
 1: Automating Nmap Scripting Engine Scripts -> nmappy.py -n or nmappy --nse
 
@@ -27,3 +33,26 @@ Nmappy performs following Operations:
 
 6: Directly enter NMAP commands -> nmappy.py -d or nmappy.py --direct
 
+7: Help (You are Looking at it baby) -> nmappy.py -h or nmappy.py --help
+
+'''
+
+try:
+    if sys.argv[1]=="-d" or sys.argv[1]=="--direct":
+        direct.direct()
+    elif sys.argv[1]=="-n" or sys.argv[1]=="--nse":
+        nse.nse()
+    elif sys.argv[1]=="-z" or sys.argv[1]=="--zenmap":
+        zenmap.zenmap()
+    elif sys.argv[1]=="-s" or sys.argv[1]=="--sploit":
+        sploit.sploit()
+    elif sys.argv[1]=="-i" or sys.argv[1]=="--interactive":
+        interactive.inter()
+    elif sys.argv[1]=="-m" or sys.argv[1]=="--mail":
+        ndf.ndf()
+    elif sys.argv[1]=="-h" or sys.argv[1]=="--help":
+        print (HELP)
+except IndexError:
+    print (HELP)
+except Exception,err:
+    print str(err)
