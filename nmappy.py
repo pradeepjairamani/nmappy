@@ -1,4 +1,4 @@
-import sys
+import argparse
 from Modules import nse
 from Modules import sploit
 from Modules import zenmap
@@ -6,7 +6,7 @@ from Modules import direct
 from Modules import interactive
 from Modules import ndf
 
-HELP='''
+HELP = '''
      .-') _ _   .-')      ('-.      _ (`-.    _ (`-.             
     ( OO ) | '.( OO )_   ( OO ).-. ( (OO  )  ( (OO  )            
 ,--./ ,--,' ,--.   ,--.) / . --. /_.`     \ _.`     \ ,--.   ,--.
@@ -29,7 +29,7 @@ This script performs following functions:
 
 4: Interactive NMAP scanning -> nmappy.py -i or nmappy.py --interactive
 
-5: Zenmap Default Scans -> nmappy.py -z or nmappy.py --zenmap
+5: Zenmap Default Scansterm -> nmappy.py -z or nmappy.py --zenmap
 
 6: Directly enter NMAP commands -> nmappy.py -d or nmappy.py --direct
 
@@ -37,22 +37,39 @@ This script performs following functions:
 
 '''
 
-try:
-    if sys.argv[1]=="-d" or sys.argv[1]=="--direct":
+
+def main():
+    parser = argparse.ArgumentParser(description=HELP)
+
+    parser.add_argument('-d' , '--direct' , dest='direct',  help='Direct Nmap Search'  , action="store_true")
+    parser.add_argument('-n' , '--nse' , dest='nse'  , help='Nmap with Scripting Engine' , action="store_true")
+    parser.add_argument('-z', '--zenmap', dest='zenmap', help='Call Nmap With Zenmap GUI', action="store_true" )
+    parser.add_argument('-s', '--sploit', dest='sploit' , help='Nmap With Sploit' , action="store_true")
+    parser.add_argument('-i', '--interactive', dest='interactive' , help='Nmap with interactive Shell' ,action="store_true")
+    parser.add_argument('-m', '--mail', dest='mail', help='Feature Under Dev', action="store_true")
+
+    args = parser.parse_args()
+
+    if args.direct:
+        print("[+] Initiating Direct Mode ")
         direct.direct()
-    elif sys.argv[1]=="-n" or sys.argv[1]=="--nse":
+    elif args.nse:
+        print("[+] Initiating NSE Mode ")
         nse.nse()
-    elif sys.argv[1]=="-z" or sys.argv[1]=="--zenmap":
+    elif args.zenmap:
+        print("[+] Initiating Zenmap Mode ")
         zenmap.zenmap()
-    elif sys.argv[1]=="-s" or sys.argv[1]=="--sploit":
+    elif args.sploit:
+        print("[+] Initiating Sploit Mode ")
         sploit.sploit()
-    elif sys.argv[1]=="-i" or sys.argv[1]=="--interactive":
+    elif args.interactive:
+        print("[+] Initiating Iter Mode ")
         interactive.inter()
-    elif sys.argv[1]=="-m" or sys.argv[1]=="--mail":
-        ndf.ndf()
-    elif sys.argv[1]=="-h" or sys.argv[1]=="--help":
-        print (HELP)
-except IndexError:
-    print (HELP)
-except Exception,err:
-    print str(err)
+    elif args.mail:
+        print("Under Development")
+    else:
+        pass
+
+
+if __name__ == '__main__':
+    main()
