@@ -1,0 +1,19 @@
+# Select language
+language: python
+
+# Select python version
+python:
+ - "2.7"
+
+# Select OS
+os:
+ - "linux"
+
+# Install requirements
+install:
+ - "pip install --upgrade setuptools"
+ - "pip install --upgrade -r requirements.txt"
+
+# Run
+script:
+- "python Modules/__travis_test__.py"
