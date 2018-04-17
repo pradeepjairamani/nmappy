@@ -1,4 +1,5 @@
 import argparse
+from argparse import RawTextHelpFormatter
 from Modules import nse
 from Modules import sploit
 from Modules import zenmap
@@ -40,7 +41,7 @@ This script performs following functions:
 
 
 def main():
-    parser = argparse.ArgumentParser(description=HELP)
+    parser = argparse.ArgumentParser(description=HELP, formatter_class=RawTextHelpFormatter)
 
     parser.add_argument('-d' , '--direct' , dest='direct',  help='Direct Nmap Search'  , action="store_true")
     parser.add_argument('-n' , '--nse' , dest='nse'  , help='Nmap with Scripting Engine' , action="store_true")
