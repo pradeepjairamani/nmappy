@@ -7,6 +7,7 @@ from Modules import interactive
 from Modules import ndf
 
 HELP = '''
+
      .-') _ _   .-')      ('-.      _ (`-.    _ (`-.             
     ( OO ) | '.( OO )_   ( OO ).-. ( (OO  )  ( (OO  )            
 ,--./ ,--,' ,--.   ,--.) / . --. /_.`     \ _.`     \ ,--.   ,--.
@@ -47,9 +48,8 @@ def main():
     parser.add_argument('-s', '--sploit', dest='sploit' , help='Nmap With Sploit' , action="store_true")
     parser.add_argument('-i', '--interactive', dest='interactive' , help='Nmap with interactive Shell' ,action="store_true")
     parser.add_argument('-m', '--mail', dest='mail', help='Feature Under Dev', action="store_true")
-
+    
     args = parser.parse_args()
-
     if args.direct:
         print("[+] Initiating Direct Mode ")
         direct.direct()
@@ -68,7 +68,7 @@ def main():
     elif args.mail:
         print("Under Development")
     else:
-        pass
+        print(parser.parse_args(['-h']))
 
 
 if __name__ == '__main__':
