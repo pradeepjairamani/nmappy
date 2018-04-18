@@ -50,9 +50,11 @@ def inter():
     print "\n"
 
     mainlist = MISC + OUT + TIME + OS+ SCRIPT+SERV+PORT+TECH+DISC+HOST
-    mainlist.insert(0, 'nmap')
+    mainlist.insert(0, 'sudo nmap')
     print " ".join(mainlist)
     print " :: Scanning Initiated :: " 
-    result=subprocess.check_output(mainlist)
-    print(result)
-
+    try:
+       result=subprocess.check_output(mainlist)
+       print(result)
+    except Exception as e:
+       print e
